@@ -1,0 +1,31 @@
+name: Generate PDF
+
+on:
+  push:
+    branches: "main" 
+    paths: ['src/**', 'Resume.tex']
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Latest Code
+        uses: actions/checkout@v4
+
+      - name: Build PDF using manavendrasen/latex
+        uses: addnab/docker-run-action@v3
+        with:
+            image: manavendrasen/latex
+            options: -v ${{ github.workspace }}:/data abrahamvg/resume-gen Resume.tex
+
+      - name: Move file to static folder
+        run: |
+          mkdir static
+          mv Resume.pdf static
+          
+      - name: Publish Package
+        uses: stefanzweifel/git-auto-commit-action@v4.9.2
+        with:
+          commit_message: ":page_facing_up: Resume Upddate"
