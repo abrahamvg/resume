@@ -1,4 +1,4 @@
-name: Generate PDF
+name: Generate PDF CI
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
           mkdir static
           mv Resume.pdf static
           
-      - name: Publish Package
+      - name: Publish Resume
         uses: stefanzweifel/git-auto-commit-action@v4.9.2
         with:
           commit_message: ":page_facing_up: Resume Upddate"
