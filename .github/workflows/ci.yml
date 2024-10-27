@@ -15,10 +15,10 @@ jobs:
       - name: Checkout Latest Code
         uses: actions/checkout@v4
 
-      - name: Build PDF using manavendrasen/latex
+      - name: Build PDF using abrahamvg/resume-gen
         uses: addnab/docker-run-action@v3
         with:
-            image: manavendrasen/latex
+            image: abrahamvg/resume-gen
             options: -v ${{ github.workspace }}:/data abrahamvg/resume-gen Resume.tex
 
       - name: Move file to static folder
