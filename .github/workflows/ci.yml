@@ -22,7 +22,7 @@ jobs:
 
       - name: Move file to static folder
         run: |
-          mkdir static
+          mkdir static 2>/dev/null || echo "Error creating directory 'static': $?"
           mv Resume.pdf static
           
       - name: Publish Resume
